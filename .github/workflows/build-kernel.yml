@@ -39,7 +39,7 @@ jobs:
       - name: Build Armbian Kernel for Odroid HC4
         uses: armbian/build@main
         with:
-          armbian_token: ${{ secrets.GITHUB_TOKEN }}
+          armbian_token: ${{ secrets.TOKEN }}
           armbian_target: "kernel"
           armbian_board: "odroidhc4"
           armbian_kernel_branch: ${{ github.event.inputs.kernel_branch || 'current' }}
