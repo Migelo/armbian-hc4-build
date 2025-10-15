@@ -7,10 +7,11 @@ This directory contains custom patches and configurations that will be applied d
 ```
 userpatches/
 ├── kernel/
-│   └── meson64-current/     # Kernel patches for current branch
-│       └── *.patch          # Your custom kernel patches
-├── config-kernel.conf       # Kernel build configuration overrides
-└── customize-image.sh       # Post-build customization script (for full images)
+│   └── meson64-current/         # Kernel patches for current branch
+│       └── *.patch              # Your custom kernel patches
+├── linux-meson64-current.config # Kernel configuration overrides
+├── config-kernel.conf           # Kernel build configuration overrides
+└── customize-image.sh           # Post-build customization script (for full images)
 ```
 
 ## Adding Kernel Patches
@@ -27,7 +28,24 @@ userpatches/kernel/meson64-current/
 └── 0003-fix-something.patch
 ```
 
-## Kernel Configuration
+## Kernel Configuration Options
+
+### Method 1: Kernel Config Fragment (Recommended)
+
+Create or edit `userpatches/linux-meson64-current.config` to add/override specific kernel options:
+
+```bash
+# Example: Enable a specific feature
+CONFIG_MY_FEATURE=y
+
+# Example: Change default settings
+CONFIG_ZRAM_DEF_COMP_ZSTD=y
+CONFIG_ZRAM_DEF_COMP="zstd"
+```
+
+This file currently sets ZSTD as the default ZRAM compression algorithm.
+
+### Method 2: Build Configuration
 
 Create `userpatches/config-kernel.conf` to override kernel build settings:
 
